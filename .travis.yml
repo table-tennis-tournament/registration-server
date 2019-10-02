@@ -15,7 +15,7 @@ before_install:
   - docker pull bitnami/tomcat:8.0
 
 install:
-  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -Dmaven.test.skip=true -B -V
 
 after_success:
   - export COMMIT=${TRAVIS_COMMIT::7}
