@@ -1,0 +1,35 @@
+language: java
+jdk:
+  - openjdk8
+services:
+  - docker
+
+env:
+  global:
+    - secure: "U4onCmRz9xpGjr27VO/TqDU/Lu75rRcw/s9kINYiJpDxay/pRm5cy3ZVJqquE4j4EsoT3KRQwkqfw8bx145zAFrJ8QRVWqTC2/MoAgaqzpWArR+moV0V8iQ/uEa1bDAVTWwx/2CdHS64rxpVD7w32NzC1PeyEc4nlnVADktoUzsZg2yd2XMo2GEc/MC2v3Hr4IN7CZoWiBD2XKxSwbSFJY1wugg1GCLj8ztYjERmI0BUzhYlLviCZlRY5RaSut4rJG6otdDSjnsJ9RiNcXujcSEFSnPW3RnvgBkUIro8aMdCC9KWkqdTf8H8yJekKAjUI5pWkcR9FCClzcMq7pBAlxPWiWAC38ffStoEM9it7eUp2EVnd8SrrE8AqLG1x53p5fXmbhXEvORkfah20CdqZ1Ad7epDR+c/b7PKWispaO0nEDpDcwyofMpnvU99Q+4BSoHHigeVf+M0t+ieGIagECrnsZKfYvAuubrWxV8wBoT/MFni8nVrU4dev9tcFqz2Lrg/2x7w9CcgCKuG6yiHVYZYaFR0NdGgxxVcdWylc99p4BgLMyiY5saAxb/GgrwJkh2iv8i3WyTtoPbO6Yuqud78v4ZvkQOORUL5yH/GYQxdYiX90kGeAv+T1oe0i6mz3rJBaJPlVSz0/KnjOzbM4l3YQIMD6ujCgFbHpc3YY8k="
+    - secure: "Xd6mcg4GmVwg80kKof1qJIgbYbL588FnglpgozS+UXziOT7ShRtF3auEj7etPuv8ZW+9ncynodEsHuV8iKuEkxtRhSccRqPGIfnusNLJ78yEG1jhAm7gBGeZLynLK17lTxZmlQNLH3e6/4cHJEK0xT1F2x17PYN79sNr6OzxxO3qDECOWv5RFHKVGLCeYbjrSVsCnIuHDV5Epn/baaLiAerNbh1k/bkaIFJfz0/ukwGGTaI0yy7/zCoHOYnN1rLa+24UNCNBmPGCXmy+n7W0RddL9/ybHWOJjXpmnDY8UxFepKFgtrECqb2TSSlStSMdGQLAijCFI1r70gFrZ7IHE7PdC4dT+sAkJAHY/M+7U9ai2nPqddl2/n6cdA20wn5Ia58lFPKuq7N6ILQX5F/UdjEEbJnRNfPORmfvJvxvSFW0GkbT6D9lx5ITqH16VwQpGHAhf26q1hAyu05MGEVcNMzvJYnX3H/5wFV5dUrsb7QVo3IPqkVSc9v2J58dj/PmVSaL91Oa8rtGLT2Bgcv79catEXVy6YVQfV06i/EAun1BX7/am6G2EMYncmVPoMOle2eHGN7sc7RiL5bd/GrHFvf+DiBDCvpDaGM9vfcPey26F8itJpmGUircCk4D4YUxiw/DWtmqbPKIR3a0c8VXxvzQfJbGzVdNr/NYafn2omc="
+    - COMMIT=${TRAVIS_COMMIT::7}
+    - IMAGE_NAME=tabletennistournament/registration-server
+
+before_install:
+  - docker pull bitnami/tomcat:8.0
+
+install:
+  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+
+after_success:
+  - export COMMIT=${TRAVIS_COMMIT::7}
+  - export TAG=`if [ ! -z "$TRAVIS_TAG" ]; then echo "$TRAVIS_TAG"; else echo "$TRAVIS_BRANCH-$COMMIT"; fi`
+  - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+  - docker build . -t $IMAGE_NAME:latest
+  - docker tag $IMAGE_NAME:latest $IMAGE_NAME:$TAG
+  - docker push $IMAGE_NAME:latest
+  - docker push $IMAGE_NAME:$TAG
+  - export TITLE="$IMAGE_NAME:$TAG is built properly and pushed to Dockerhub"
+  - export TIMESTAMP=`date`
+  - export GIT_LOG=`git log -1 --pretty=%B $COMMIT`
+  - export TEXT="[build version] $TAG<br />[datetime] $TIMESTAMP<br />[changelog] $GIT_LOG<br />"
+
+cache:
+  directories:
+    - '$HOME/.m2/repository'

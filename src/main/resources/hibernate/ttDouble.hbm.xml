@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+    <class name="de.tt.treg.server.domain.TTDouble" table="doubles">
+        <id name="id" type="java.lang.Integer">
+            <column name="Doub_ID" />
+            <generator class="identity" />
+        </id>
+        <property name="play1Id" type="java.lang.Integer">
+            <column name="Doub_play1_ID" length="10" not-null="false" unique="false" />
+        </property>
+        <property name="play2Id" type="java.lang.Integer">
+            <column name="Doub_play2_ID" length="10" not-null="false" unique="false" />
+        </property>
+        <property name="play1FirstName" type="string">
+            <column name="Doub_play1_FirstName" length="45" not-null="false" unique="false" />
+        </property>
+        <property name="play2FirstName" type="string">
+            <column name="Doub_play2_FirstName" length="45" not-null="false" unique="false" />
+        </property>
+        <property name="play1LastName" type="string">
+            <column name="Doub_play1_Name" length="45" not-null="false" unique="false" />
+        </property>
+        <property name="play2LastName" type="string">
+            <column name="Doub_play2_Name" length="45" not-null="false" unique="false" />
+        </property>
+        <property name="competitionId" type="java.lang.Integer">
+            <column name="Doub_Type_ID" length="10" not-null="false" unique="false" />
+        </property>
+        <property name="doubleKind" type="java.lang.Integer">
+            <column name="Doub_Kind" length="10" not-null="false" unique="false" />
+        </property>
+        <property name="doublePaid" type="java.lang.Integer">
+            <column name="Doub_Paid" length="10" not-null="false" unique="false" />
+        </property>
+        <many-to-one name="user" class="de.tt.treg.server.domain.User" fetch="join">
+            <column name="User_ID" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

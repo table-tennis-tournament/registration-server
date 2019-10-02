@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+    <class name="de.tt.treg.server.domain.Competition" table="type">
+        <id name="id" type="java.lang.Integer">
+            <column name="Type_ID" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="Type_Name" length="255" not-null="false" unique="false" />
+        </property>
+        <property name="maxAge" type="java.lang.Integer">
+            <column name="Type_AgeTo" length="10" not-null="false" unique="false" />
+        </property>
+        <property name="minAge" type="java.lang.Integer">
+            <column name="Type_AgeFrom" length="10" not-null="false" unique="false" />
+        </property>
+        <property name="kind" type="java.lang.Integer">
+            <column name="Type_Kind" length="10" not-null="false" unique="false" />
+        </property>
+        <property name="price" type="java.lang.Double">
+            <column name="Type_StartGebuehr" not-null="false" unique="false" />
+        </property>
+        <property name="maxParticipants" type="java.lang.Integer">
+            <column name="type_Vorgabe" not-null="false" unique="false" />
+        </property>
+        
+    </class>
+</hibernate-mapping>

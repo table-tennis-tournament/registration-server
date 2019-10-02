@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/mvc
+                           http://www.springframework.org/schema/mvc/spring-mvc.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="de.tt.treg.server"/>
+    
+    <mvc:annotation-driven />
+
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+	
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl" >
+        <property name="host" value="${EMAIL_SERVER}"/>
+        <property name="port" value="25"/>
+        <property name="username" value="${EMAIL_USER}"/>
+        <property name="password" value="${EMAIL_PW}"/>
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.transport.protocol">smtp</prop>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+            </props>
+        </property>
+    </bean>
+    
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/pages/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+
+     <bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+        <property name="velocityProperties">
+            <value>
+                resource.loader=class
+                class.resource.loader.class=org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+            </value>
+        </property>
+    </bean>
+</beans>

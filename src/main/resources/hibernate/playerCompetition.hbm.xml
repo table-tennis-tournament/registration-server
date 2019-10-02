@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping package="de.tt.treg.server.domain">
+    <class name="PlayerCompetition" table="typeperplayer">
+        <composite-id name="playerCompetitionPk"
+        		class="PlayerCompetitionPk">
+	        <key-property name="playerId"  column="Typl_Play_Id"
+	            type="java.lang.Integer" />
+	        <key-property name="competitionId" column="Typl_Type_Id"
+	            type="java.lang.Integer" />
+    	</composite-id>
+        <property name="paid" type="java.lang.Integer">
+            <column name="Typl_Paid" length="10" not-null="false" unique="false" />
+        </property>
+        <property name="isWaitingList" type="java.lang.Integer">
+            <column name="IsWaitingList" length="10" not-null="true" unique="false" />
+        </property>
+        <property name="registrationDate" type="timestamp">
+            <column name="Timestamp" not-null="false" unique="false" />
+        </property>
+    </class>
+</hibernate-mapping>

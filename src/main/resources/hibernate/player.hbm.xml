@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+    <class name="de.tt.treg.server.domain.Player" table="player">
+        <id name="id" type="java.lang.Integer">
+            <column name="Play_ID" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="team" class="de.tt.treg.server.domain.Team" fetch="join">
+            <column name="Play_Club_ID" not-null="true" />
+        </many-to-one>
+        <many-to-one name="user" class="de.tt.treg.server.domain.User" fetch="join">
+            <column name="Play_User_ID" not-null="true" />
+        </many-to-one>
+        <property name="firstName" type="string">
+            <column name="Play_FirstName" length="255" not-null="false" unique="false" />
+        </property>
+        <property name="firstNameShort" type="string">
+            <column name="Play_FirstNameShort" length="255" not-null="false" unique="false" />
+        </property>
+        <property name="lastName" type="string">
+            <column name="Play_LastName" length="255" not-null="false" unique="false" />
+        </property>
+        <property name="birthDate" type="timestamp">
+            <column name="Play_BirthDate" not-null="false" unique="false" />
+        </property>
+<!--         <set name="competitions" table="typeperplayer" cascade="delete" lazy="false"> -->
+<!--             <key column="typl_play_id" /> -->
+<!--             <many-to-many column="typl_type_id" fetch="join" class="de.tt.treg.server.domain.Competition" /> -->
+<!--         </set> -->
+        <set name="competitions" table="typeperplayer"
+                inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="typl_play_id" not-null="true" />
+            </key>
+            <one-to-many class="de.tt.treg.server.domain.PlayerCompetition" />
+        </set>
+    </class>
+</hibernate-mapping>

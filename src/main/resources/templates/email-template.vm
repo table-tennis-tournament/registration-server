@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	$cssHead
+</head>
+<body>
+Liebe/r $title,<p/>
+
+Danke für deine Anmeldung! Den aktuellen Status (bezahlt, angemeldet) könnt ihr mit folgendem Login anschauen:<br/>
+<br/>
+URL: <a href="https://ttvettlingen.de/index.php/albgauturnier/albgau-anmeldung">TTV Ettlingen Albgauturnier</a><br/>
+User: $username <br/>
+Passwort: $password <br/>
+
+<br/>
+Gerne bestätigen wir folgende Eintragungen: <br/>
+<br/>
+Verein: $vereinsname
+<br/>
+$players
+<br/>
+
+<br/>
+$waitingList
+<br/>
+
+Für eine schnellere Abwicklung beim Turnier habt ihr die Möglichkeit per Vorkasse eure Startgebühr
+zu überweisen. <b> Auch bei Vorkasse ist die Meldung der Anwesenheit vor
+    Ort erforderlich. Bitte unbedingt bei der Anmeldung melden.</b> <br/>Kontodaten:
+<br/><br/>
+<p align="center">
+<b>BIC:</b>GENODE61ETT<br/>
+<b>IBAN:</b> DE37660912000000602906<br/>
+Volksbank Ettlingen<br/>
+<b>Betrag:</b> $betrag <br/>
+<b>Verwendungszweck:</b> ReNr. $verwendungsnummer
+<p/>
+
+<br/>
+!!! Zahlungseingang spätestens Buchungsdatum: Dienstag, 31. Dezember 2019, Beleg bitte mitnehmen !!!
+<br/>
+
+<br/>
+Bei Fragen, Wünschen oder Anregungen könnt ihr uns unter turnier@ttvettlingen.de erreichen.<p/>
+
+Viele Grüße und ein erfolgreiches Turnier<br/><br/>
+TTV Ettlingen   <br/>
+
+
+</body>
+</html>

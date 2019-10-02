@@ -1,0 +1,72 @@
+<script src="resources/js/payUser.js"></script>
+  <div class="row">
+    <div class="col-md-8">
+      <h1>Kasse</h1>
+    </div>
+    
+  </div>
+  
+  <div class="row">
+    <div class="col-md-10">
+      <form>
+          <div class="form-group col-md-3">
+            <input type="text" class="form-control" id="invoiceNumber" placeholder="Rechnungsnummer">
+          </div>
+           <div class="form-group col-md-2">
+              <button type="button" class="btn btn-success btn-sl" onclick="treg.User.PayUser.OnSearchInvoiceClicked()">
+	                <span class="glyphicon glyphicon-search"></span>
+                	Suche
+          	</button>
+          </div>
+           <div class="form-group col-md-3">
+            <input class="form-control twitter-typeahead" id="playerName" type="text" placeholder="Name"  data-toggle="tooltip" data-placement="top">
+          </div>
+          
+        </form>
+    </div>
+    
+  </div>
+    <br/>
+  <div class="row">
+  <h2 class="col-md-8">Teilnehmer</h2>
+  <div class="col-md-3 ">
+      <table class="table">
+      	<tr>
+      		<td style="border-top:none !important;">Angemeldet</td>
+      		<td style="border-top:none !important;" class="waitlist">Warteliste</td>
+      		<td class="success">Bezahlt</td>
+      	</tr>
+      </table>
+    </div>
+  </div>
+  <br/>
+  <div class="row" id="playersOfUser">
+   <div class="col-md-12">
+     <div class="panel panel-default">
+      <table class="table table-hover player-table" id="playersTable">
+        <thead>
+          <tr>
+            <td>Vorname</td>
+            <td>Nachname</td>
+            <td>Verein</td>
+            <td>Disziplin 1</td>
+            <td>Disziplin 2</td>
+            <td>Disziplin 3</td>
+            <td>Disziplin 4</td>
+            <td>Vorkasse</td>
+            <td>Bezahlt</td>
+          </tr>
+        </thead>
+        <tbody/>
+      </table>
+    </div>
+  </div>
+</div>
+ <div class="row">
+ <div class="form-group pull-right col-md-2">
+              <button type="button" class="btn btn-success btn-sl" id="confirmPayment">
+	                <span class="glyphicon glyphicon-search"></span>
+                	Bezahlen
+          		</button>
+          </div>
+</div>

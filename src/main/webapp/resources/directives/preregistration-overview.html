@@ -1,0 +1,29 @@
+<div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <td>
+          Tag
+        </td>
+        <td>
+          Wettbewerb
+        </td>
+        <td>
+          Meldeschluss(Turniertag)
+        </td>
+        <td>
+          Anmeldungen
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="preregistration in preregistrationOverviewData" ng-class-even="'alternatedRow'">
+        <td ng-bind="preregistration.startDay"></td>
+        <td ng-bind="preregistration.name"></td>
+        <td ng-bind="preregistration.startTime"></td>
+        <td ng-bind="preregistration.registrationCount"></td>
+      </tr>
+      
+    </tbody>
+  </table>
+</div>
