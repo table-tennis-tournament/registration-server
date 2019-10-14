@@ -12,8 +12,7 @@ env:
     - COMMIT=${TRAVIS_COMMIT::7}
 
 before_install:
-  - chmod +x mvnw
-  - docker pull openjdk:8-jdk-alpine
+  - docker pull bitnami/tomcat:8.0
 
 script:
   - ./mvnw clean install -B
