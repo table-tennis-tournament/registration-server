@@ -15,7 +15,7 @@ before_install:
   - docker pull bitnami/tomcat:8.0
 
 script:
-  - ./mvnw clean install -B
+  - mvn clean install -B
 
 after_success:
   - export COMMIT=${TRAVIS_COMMIT::7}
