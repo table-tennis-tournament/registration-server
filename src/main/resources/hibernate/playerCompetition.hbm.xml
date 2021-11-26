@@ -14,6 +14,9 @@
         <property name="paid" type="java.lang.Integer">
             <column name="Typl_Paid" length="10" not-null="false" unique="false" />
         </property>
+        <property name="seed" type="java.lang.Integer">
+            <column name="Typl_Seed" length="10" not-null="false" unique="false" />
+        </property>
         <property name="isWaitingList" type="java.lang.Integer">
             <column name="IsWaitingList" length="10" not-null="true" unique="false" />
         </property>

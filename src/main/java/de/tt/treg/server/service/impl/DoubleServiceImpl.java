@@ -1,5 +1,7 @@
 package de.tt.treg.server.service.impl;
 
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -140,7 +142,7 @@ public class DoubleServiceImpl implements DoubleService {
 
 	private PlayerCompetition insertInTypePerPlayer(int id, int doubleId) {
 		PlayerCompetition playerCompetition = new PlayerCompetition(0,
-				new Date(), doubleId, id);
+				Timestamp.from(Instant.now()), doubleId, id);
 		playerCompetitionDao.save(playerCompetition);
 		return playerCompetition;
 

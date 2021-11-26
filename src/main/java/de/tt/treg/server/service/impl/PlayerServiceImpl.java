@@ -1,5 +1,7 @@
 package de.tt.treg.server.service.impl;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -87,6 +89,7 @@ public class PlayerServiceImpl implements PlayerService {
 					.getCompetitionId());
 			competition.setIsWaitingList(isWaitingList);
 			competition.setPaid(0);
+			competition.setRegistrationDate(Timestamp.valueOf(LocalDateTime.now()));
 			playerCompetitionDao.save(competition);
 		}
 	}
