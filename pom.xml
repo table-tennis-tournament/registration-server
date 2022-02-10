@@ -3,7 +3,7 @@
   <groupId>de.tt</groupId>
   
  <properties>
-		<hibernate.version>4.2.0.Final</hibernate.version>
+		<hibernate.version>5.4.24.Final</hibernate.version>
 		<mysql.connector.version>8.0.16</mysql.connector.version>
 		<spring.version>3.2.2.RELEASE</spring.version>
 		<spring.security>5.2.10.RELEASE</spring.security>
