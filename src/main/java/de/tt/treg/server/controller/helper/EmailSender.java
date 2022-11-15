@@ -27,10 +27,8 @@ import de.tt.treg.server.domain.User;
 import de.tt.treg.server.service.impl.helper.CompetitionCache;
 
 /**
- * This class is responsible for sending email after successfull registration.
+ * This class is responsible for sending email after successful registration.
  * The mail contains username, password and the player data.
- * 
- * @author Dane
  * 
  */
 public class EmailSender {
@@ -38,7 +36,7 @@ public class EmailSender {
 	private static final String TR_CLOSE = "</tr>";
 	private static final String TR = "<tr>";
 	private static final String PLAYER_TABLE_HEAD = "<th>Vorname</th><th>Nachname</th><th>Geburtsjahr</th><th>Konkurrenzen</th>"
-			+ "<th>Startgebühr</th><th>Vorkasse</th>";
+			+ "<th>Startgebühr</th>";
 	private static final String WAITING_LIST_TABLE_HEAD = "<th>Vorname</th><th>Nachname</th><th>Geburtsjahr</th><th>Konkurrenzen</th>";
 	private static final String DOUBLE_LIST_TABLE_HEAD = "<th>Spieler 1</th><th>Spieler 2</th><th>Konkurrenz</th>";
 
@@ -123,7 +121,6 @@ public class EmailSender {
 		
 		StringBuilder builder = getStringBuilderWithTableHead(PLAYER_TABLE_HEAD);
 		double paymentSum = 0;
-		double prePaymentSum = 0;
 		for (Player player : players) {
 			builder.append(TR);
 			builder = setPlayerSpecificTableDataCells(builder, player);
@@ -131,13 +128,11 @@ public class EmailSender {
 					.getCompetitions());
 			builder.append(getTableData(competitionString));
 			builder.append(getPrice(player.getPayment()));
-			builder.append(getPrice(player.getPrepayment()));
 			builder.append(TR_CLOSE);
 			paymentSum += player.getPayment();
-			prePaymentSum += player.getPrepayment();
 		}
-		params.put("betrag", getPriceAsString(prePaymentSum));
-		builder = addPaymentRow(paymentSum, prePaymentSum, builder);
+		params.put("betrag", getPriceAsString(paymentSum));
+		builder = addPaymentRow(paymentSum, builder);
 		builder = setTableBodyAndTableEnd(builder);
 		return builder.toString();
 	}
@@ -180,11 +175,10 @@ public class EmailSender {
 	}
 
 	private StringBuilder addPaymentRow(
-			double paymentSum, double prePaymentSum, StringBuilder builder) {
+			double paymentSum, StringBuilder builder) {
 		builder.append(TR);
 		builder.append(getTableDataWithRowspan("Gesamtsumme: "));
 		builder.append(getPrice(paymentSum));
-		builder.append(getPrice(prePaymentSum));
 		builder.append(TR_CLOSE);
 		return builder;
 	}
