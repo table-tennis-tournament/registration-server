@@ -160,25 +160,26 @@ public class PlayerController {
 	@RequestMapping(value = "/new", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	public @ResponseBody TournamentRegistrationObject insertNewPlayers(
 			@RequestBody TournamentRegistrationObject insertObject) {
+		return null;
 		// precondition
-		List<Player> players = insertObject.getPlayers();
-		if (!isInputDataValid(players)) {
-			return null;
-		}
-		User newUser = createUser(players);
-		String clearTextPasswort = newUser.getPasswort();
-		
-		setUserAndInsertPlayers(players, newUser);
-		
-		TournamentRegistrationObject tournamentObject = doubleService
-				.insertDoubles(insertObject.getDoubles(), players);
-		newUser.setPasswort(clearTextPasswort);
-		players = getCompletePreparer().prepare(players);
-
-		new EmailSender().sendEmail(players, mailSender, velocityEngine,
-				newUser, tournamentObject.getDoubles());
-		return new TournamentRegistrationObject(players,
-				tournamentObject.getDoubles());
+//		List<Player> players = insertObject.getPlayers();
+//		if (!isInputDataValid(players)) {
+//			return null;
+//		}
+//		User newUser = createUser(players);
+//		String clearTextPasswort = newUser.getPasswort();
+//
+//		setUserAndInsertPlayers(players, newUser);
+//
+//		TournamentRegistrationObject tournamentObject = doubleService
+//				.insertDoubles(insertObject.getDoubles(), players);
+//		newUser.setPasswort(clearTextPasswort);
+//		players = getCompletePreparer().prepare(players);
+//
+//		new EmailSender().sendEmail(players, mailSender, velocityEngine,
+//				newUser, tournamentObject.getDoubles());
+//		return new TournamentRegistrationObject(players,
+//				tournamentObject.getDoubles());
 	}
 	
 	@RequestMapping(value = "/pay", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")

@@ -39,7 +39,6 @@
             <div class="navbar-collapse" >
               <ul id="navigationTabsList" class="nav navbar-nav">
                 <li id="information"><a onclick="navigateToRequestedID('information');">Home</a></li>
-                <li id="registration"><a onclick="navigateToRequestedID('registration');">Anmeldung</a></li>
                 <li id="participants"><a onclick="navigateToRequestedID('participants');">Teilnehmer</a></li>
               </ul>
               <ul class="nav navbar-nav navbar-right" id="navbarRightToLogin">
