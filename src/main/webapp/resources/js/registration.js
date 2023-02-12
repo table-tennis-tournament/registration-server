@@ -73,8 +73,8 @@ $(function() {
 });
 
 function buildNewDisciplineSelectBox(number) {
-	if(number === 3) {
-		$('#secondRowForThirdAndFourthDisciplineSelectpicker').css('display', 'block');
+	if(number > 1) {
+		return;
 	}
 
 	var selectPickerId = getDisciplineIdForSelectPickerByDisciplineNumber(number);
@@ -88,9 +88,8 @@ function buildNewDisciplineSelectBox(number) {
 		var disciplineNumber = $(this).attr('value');
 		if (allDisciplinesReachedOrIsNotTheLastOneSelected(this.value,
 				disciplineNumber)) {
-			return;
+
 		}
-		buildNewDisciplineSelectBox(currentDisziplinIndex);
 	});
 	loadDisciplineArray('competition/single/all', "#" + selectPickerId);
 	currentDisziplinIndex++;
@@ -431,7 +430,7 @@ function setClubListAndRegisterSelectedHandler() {
 											highlighter : function(item) {
 												if (typeof item == 'undefined') {
 													toggleTooltipForNewClub();
-													return '<span><strong>Neuen Verein eintragen</strong><span class="glyphicon glyphicon-plus" style="vertical-align:middle; margin-bottom: 5px; padding-left: 10px"></span>';
+													return '<span><strong>Neuer Teamname</strong><span class="glyphicon glyphicon-plus" style="vertical-align:middle; margin-bottom: 5px; padding-left: 10px"></span>';
 												}
 												return "<span>" + item
 														+ "</span>";

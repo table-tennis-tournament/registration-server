@@ -4,6 +4,6 @@ FROM bitnami/tomcat:8.0
 MAINTAINER Dane
 # COPY path-to-your-application-war path-to-webapps-in-docker-tomcat
 
-COPY target/ttvettlingen.war /bitnami/tomcat/data/
+COPY target/ttcborussia.war /bitnami/tomcat/data/
 
 

@@ -82,10 +82,10 @@ public class EmailSender {
 			MimeMessageHelper message) throws MessagingException,
 			AddressException {
 		message.setTo(newUserCopy.getUserName());
-		message.setFrom(new InternetAddress("turnier@ttvettlingen.de"));
+		message.setFrom(new InternetAddress("info@ttcborussia.de"));
 		message.setBcc(new InternetAddress(
-						"turnieranmeldung@ttvettlingen.de"));
-		message.setSubject("Albgauturnier 2023 Anmeldung " + newUserCopy.getUserName());
+						"jedermann@ttcborussia.de"));
+		message.setSubject("Jedermannsturnier 2023 Anmeldung " + newUserCopy.getUserName());
 		return message;
 	}
 	
@@ -99,8 +99,6 @@ public class EmailSender {
 		params.put("password", newUserCopy.getPasswort());
 		params.put("players", getPlayersAsHTMLTable(playersMap
 				.get(WaitingListPlayerSeperator.PLAYER_LIST)));
-		params.put("waitingList", getWaitingListAsHTMLTable(playersMap
-				.get(WaitingListPlayerSeperator.WAITING_LIST)));
 		params.put("verwendungsnummer", newUserCopy.getId());
 		params.put("vereinsname", players.get(0).getTeam().getName());
 	}
@@ -133,25 +131,6 @@ public class EmailSender {
 		}
 		params.put("betrag", getPriceAsString(paymentSum));
 		builder = addPaymentRow(paymentSum, builder);
-		builder = setTableBodyAndTableEnd(builder);
-		return builder.toString();
-	}
-	
-	private Object getWaitingListAsHTMLTable(Collection<Player> players) {
-		if (players == null) {
-			return "";
-		}
-		StringBuilder builder = new StringBuilder();
-		builder.append("Warteliste: <br/>");
-		builder = getStringBuilderWithTableHead(WAITING_LIST_TABLE_HEAD, builder);
-		for (Player player : players) {
-			builder.append(TR);
-			builder = setPlayerSpecificTableDataCells(builder, player);
-			String competitionString = getCompetitionData(player
-					.getCompetitions());
-			builder.append(getTableData(competitionString));
-			builder.append(TR_CLOSE);
-		}
 		builder = setTableBodyAndTableEnd(builder);
 		return builder.toString();
 	}
