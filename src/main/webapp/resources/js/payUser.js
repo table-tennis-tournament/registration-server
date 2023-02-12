@@ -81,8 +81,8 @@ treg.User.PayUser = new function(){
 				for (var diff = 0; diff < 4 - player.competitions.length; diff++) {
 					tableRow += '<td></td>';
 				}
-				tableRow += '<td>'+player.prepayment+' €</td>';
-				sum+= player.prepayment;
+				tableRow += '<td>'+player.payment+' €</td>';
+				sum+= player.payment;
 				var checked = '';
 				console.log(hasPaid);
 				if(hasPaid === true){
