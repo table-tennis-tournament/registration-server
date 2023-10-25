@@ -1,20 +1,5 @@
 package de.tt.treg.server.controller;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-
-import org.apache.velocity.app.VelocityEngine;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import de.tt.treg.server.controller.domain.TournamentRegistrationObject;
 import de.tt.treg.server.controller.exceptions.WrongUsernameOrPasswordException;
 import de.tt.treg.server.controller.helper.EmailSender;
@@ -32,6 +17,16 @@ import de.tt.treg.server.service.CompetitionService;
 import de.tt.treg.server.service.DoubleService;
 import de.tt.treg.server.service.PlayerService;
 import de.tt.treg.server.service.UserService;
+import org.apache.velocity.app.VelocityEngine;
+import org.apache.velocity.util.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Controller
 @RequestMapping("/player")
@@ -195,6 +190,8 @@ public class PlayerController {
 	private void setUserAndInsertPlayers(List<Player> players, User newUser) {
 		for (Player player : players) {
 			player.setUser(newUser);
+			player.setFirstName(StringUtils.capitalizeFirstLetter(player.getFirstName()));
+			player.setLastName(StringUtils.capitalizeFirstLetter(player.getLastName()));
 			playerService.insertPlayer(player);
 		}
 	}
