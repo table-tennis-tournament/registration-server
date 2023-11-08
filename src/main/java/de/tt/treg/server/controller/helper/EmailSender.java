@@ -85,7 +85,7 @@ public class EmailSender {
 		message.setFrom(new InternetAddress("turnier@ttvettlingen.de"));
 		message.setBcc(new InternetAddress(
 						"turnieranmeldung@ttvettlingen.de"));
-		message.setSubject("Albgauturnier 2023 Anmeldung " + newUserCopy.getUserName());
+		message.setSubject("Albgauturnier 2024 Anmeldung " + newUserCopy.getUserName());
 		return message;
 	}
 	
