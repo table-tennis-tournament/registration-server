@@ -4,7 +4,7 @@
 <html lang="en" ng-app="TTRegistration">
 <head>
   <meta charset="utf-8">
-  <title>TTV Ettlingen - Albgauturnier 2024</title>
+  <title>TTV Ettlingen - Albgauturnier 2025</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <meta name="author" content="">
