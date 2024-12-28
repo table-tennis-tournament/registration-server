@@ -75,17 +75,20 @@ public class EmailSender {
 			}
 			
 		};
-		mailSender.send(preparator);
+		try{
+			mailSender.send(preparator);
+		} catch (Exception ex) {
+			System.out.println(ex);
+		}
 	}
 	
 	private MimeMessageHelper setEmailHeaderInformation(final User newUserCopy,
-			MimeMessageHelper message) throws MessagingException,
-			AddressException {
+			MimeMessageHelper message) throws MessagingException {
 		message.setTo(newUserCopy.getUserName());
 		message.setFrom(new InternetAddress("turnier@ttvettlingen.de"));
 		message.setBcc(new InternetAddress(
 						"turnieranmeldung@ttvettlingen.de"));
-		message.setSubject("Albgauturnier 2023 Anmeldung " + newUserCopy.getUserName());
+		message.setSubject("Albgauturnier 2025 Anmeldung " + newUserCopy.getUserName());
 		return message;
 	}
 	
